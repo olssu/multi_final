@@ -75,7 +75,7 @@ const CommunicationWriting = () => {
         <Form className='writingForm'>
           <Form.Group id='writingTop' controlId="exampleForm.ControlInput1">
            
-            <Form.Control type="text" onChange={(e)=>handlec_title(e)} placeholder="글 제목을 입력해주세요" />
+            <Form.Control type="text" onChange={(e)=>handlec_title(e)} placeholder="글 제목을 입력해주세요" autocomplete="off" />
           </Form.Group>
             <Form.Control as='textarea' onChange={(e)=>handlec_content(e)} className='writingText' type="text" placeholder="내용을 입력해주세요" />
         </Form>

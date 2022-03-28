@@ -95,10 +95,10 @@ const GroupWriting = () => {
          <p className='groupTitle'><BsChevronRight/> 모임찾기</p>
         <Form className='writingForm'>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Control type="text" onChange={(e)=>handleg_title(e)} placeholder="글 제목을 입력해주세요" />
+            <Form.Control type="text" onChange={(e)=>handleg_title(e)} placeholder="글 제목을 입력해주세요" autocomplete="off"/>
           </Form.Group>
           <Form.Group id='writingSub' controlId="exampleForm.ControlTextarea1">
-            <Form.Control className='writingSubTitle' onChange={(e)=>handleg_subtitle(e)} type="text" placeholder='소제목 입력' />
+            <Form.Control className='writingSubTitle' onChange={(e)=>handleg_subtitle(e)} type="text" placeholder='소제목 입력' autocomplete="off" />
             <Form.Select className='writingSelect' onChange={(e)=>handleg_tag(e)} aria-label="Default select example">
               <option>주제</option>
               <option value="스터디" >스터디</option>

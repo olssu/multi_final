@@ -30,11 +30,12 @@ public interface ApplyMapper {
 	List<ApplyDTO> getmygroupapplyList(@Param("m_name") String m_name);
 	
 	//수정
-	@Update("UPDATE itp_apply SET a_auth=#{a_auth} WHERE a_gno= #{a_gno}")
-	int updateauthcheck(
-			@Param("a_gno") int a_gno,
-			@Param("a_auth") String a_auth
-		);
+	@Update("UPDATE itp_apply SET a_auth=#{a_auth} WHERE a_no= #{a_no} and a_gno=#{a_gno}")
+    int updateauthcheck(
+            @Param("a_gno") int a_gno,
+            @Param("a_auth") String a_auth,
+            @Param("a_no") int a_no
+        );
 	
 	
 }

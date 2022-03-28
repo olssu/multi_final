@@ -38,7 +38,7 @@ const CommunityChange= () => {
      })
      .then(
        
-       navigate('/communication')//성공시 목록으로 돌아가기
+      window.location='/communication'//성공시 목록으로 돌아가기
      )
      
    }
@@ -76,7 +76,7 @@ if (!Comdatas) return null;
       <p className='communityTitle'>소통공간</p>
       <Form className='writingForm'>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Control type="text" onChange={(e)=>handlec_title(e)} value={c_title} placeholder="글 제목을 입력해주세요" />
+          <Form.Control type="text" onChange={(e)=>handlec_title(e)} value={c_title} placeholder="글 제목을 입력해주세요" autocomplete="off" />
         </Form.Group>
           <Form.Control as='textarea' onChange={(e)=>handlec_content(e)} value={c_content} className='writingText' type="text" placeholder="내용을 입력해주세요" />
       </Form>

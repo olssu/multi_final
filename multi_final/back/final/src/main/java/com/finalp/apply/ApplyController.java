@@ -52,12 +52,11 @@ public class ApplyController {
 	}
 	//수정
 	@PutMapping("/update/authcheck/{a_gno}")
-	public int updateauthcheck(@PathVariable("a_gno") int a_gno,
-			@RequestParam(value="a_auth",required=false) String a_auth
-			
-			) { 
-		return mapper.updateauthcheck(a_gno,a_auth);
-	
-	}
+    public int updateauthcheck(@PathVariable("a_gno") int a_gno,
+            @RequestParam(value="a_no",required=false) int a_no,
+            @RequestParam(value="a_auth",required=false) String a_auth
 
+            ) { 
+        return mapper.updateauthcheck(a_gno,a_auth,a_no);
+    }
 }

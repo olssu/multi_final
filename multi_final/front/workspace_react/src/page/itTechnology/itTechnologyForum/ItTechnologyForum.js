@@ -29,7 +29,6 @@ const Reply = styled.div`
     height: 60px;
     margin-bottom: 15px;
   }
-
   #editBtn, #delBtn {
     margin-left: 8px;
     width: 45px;
@@ -48,7 +47,6 @@ const Reply = styled.div`
       margin-bottom: 8px;
   }
   
-
   #doneBtn, #cancelBtn {
     margin-left: 8px;
     height: 26px;
@@ -60,13 +58,11 @@ const Reply = styled.div`
     outline: 0;
     
   }
-
 `;
 const Content = styled.div`
 margin-top: 20px;
 margin-bottom: 5px;
 display: flex;
-
 `
 const ReplyTag = styled.p`
 font-weight: bold;
@@ -75,6 +71,7 @@ width: 128px;
 const ReplyContent = styled.p`
 width: 700px;
 line-height: 25px;
+word-break: break-all;
 `
 
 const ReplyNameAndDate = styled.p`
@@ -112,7 +109,7 @@ const ItTechnologyForum = () => {
         const fetchForumCnt = async() => {
             setLoading(true);
             try {
-                const response = await axios.get('http://localhost:8085/itTech/forum/count');
+                const response = await axios.get('http://115.85.181.164:8085/itTech/forum/count');
                 setForumCnt(response.data);
                 console.log(response);
             } catch (error) {
@@ -129,13 +126,13 @@ const ItTechnologyForum = () => {
             setLoading(true);
             try {
                 if(tag == null) {
-                    const response = await axios.get('http://localhost:8085/itTech/forum');
+                    const response = await axios.get('http://115.85.181.164:8085/itTech/forum');
                     setTechForum(response.data);
                     console.log(response);
                     console.log(response.data.length);
                 }
                 else {
-                    const response = await axios.get(`http://localhost:8085/itTech/forum/${tag}`)
+                    const response = await axios.get(`http://115.85.181.164:8085/itTech/forum/${tag}`)
                     setTechForum(response.data);
                     console.log(response);
                 }
@@ -160,7 +157,7 @@ const ItTechnologyForum = () => {
         if (document.getElementById('editInput') === null) {
             alert("내용을 입력하세요.");
         } else {
-            axios.put(`http://localhost:8085/itTech/forum/updateTech/${no}`, null,{params: {'content': content}})
+            axios.put(`http://115.85.181.164:8085/itTech/forum/updateTech/${no}`, null,{params: {'content': content}})
             .then(document.location.href='/itTech/forum')
             .catch(error => {
                 console.log(error);
@@ -171,7 +168,7 @@ const ItTechnologyForum = () => {
     const deleteComment = (no) => {
         console.log(no);
         if(window.confirm("댓글을 삭제하시겠습니까?")){
-            axios.delete(`http://localhost:8085/itTech/forum/deleteTech/${no}`)
+            axios.delete(`http://115.85.181.164:8085/itTech/forum/deleteTech/${no}`)
             .then(document.location.href='/itTech/forum')
             .catch(error => {
             console.log(error);
@@ -201,25 +198,27 @@ const ItTechnologyForum = () => {
         {techForum.map((techForum, t_no) => (
             <Reply key={t_no}>
                 {editClicked && techForum.t_no === editNo ? (
+                    //수정버튼을 클릭 시 댓글 내용 => 수정입력창
                     <Content>
                         <ReplyTag>{techForum.t_tag}</ReplyTag>
-                            <input type="text" id="editInput" defaultValue={techForum.t_content} onChange={(e) => handleContent(e)}></input>
+                            <input type="text" id="editInput" autocomplete="off" defaultValue={techForum.t_content} onChange={(e) => handleContent(e)}></input>
                                 <div id="editRight">
                                     <div id='editBtns'>
                                         <button id="doneBtn" onClick={() => doneEdit(techForum.t_no)}>
                                         수정
                                         </button>
-                                        <button id='cancelBtn' onClick={() => editCancel()}>취소</button>
+                                        <button id='cancelBtn' onClick={() => editCancel()}>취소</button>  {/*취소버튼 클릭 시 수정입력창 => 댓글 내용*/}
                                     </div>
-                                    <span style={{color:'grey'}}>&nbsp; {contentCnt}/900</span>
+                                    <span style={{color:'grey'}}>&nbsp; {contentCnt}/900</span> {/*글자 수 카운터*/}
                                 </div>
                     </Content>
                 ) : (
+                    // 수정버튼 클릭하지 않거나 취소버튼 클릭 시 보여지는 댓글
                     <Content>
                         <ReplyTag>{techForum.t_tag}</ReplyTag>
-                        {/* <p>{techForum.t_parentno}</p> */}
                         <ReplyContent>{techForum.t_content}</ReplyContent>
                         <ReplyNameAndDate>{techForum.t_name} | {techForum.t_date}
+                        {/* 로그인한 닉네임과 작성자 닉네임 일치하면 수정, 삭제 버튼 노출 */}
                         {sessionStorage.getItem('m_name') === techForum.t_name || localStorage.getItem('m_name') === techForum.t_name 
                             || sessionStorage.getItem('m_name') === 'manager' || localStorage.getItem('m_name') === 'manager'
                         ? (
@@ -235,8 +234,6 @@ const ItTechnologyForum = () => {
                             null
                         )}
                         </ReplyNameAndDate>
-                        
-                        {/* <button id="replyBtn">답글</button> */}
                     </Content>
                 )
             }

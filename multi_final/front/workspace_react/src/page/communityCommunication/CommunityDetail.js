@@ -26,7 +26,7 @@ const CommunityDetail = () => {
   function Delete(no){
     if(window.confirm("게시글을 삭제하시겠습니까?")){
       axios.delete(`http://localhost:8085/deleteCom/${no}`)
-         .then(navigate('/communication')).catch(err=>console.log(err))
+         .then(window.location='/communication').catch(err=>console.log(err))
     }
   }
   

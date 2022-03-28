@@ -1,0 +1,11 @@
+mydb스키마에서
+
+create table itp_notice(
+    n_no int primary key,
+    n_title varchar(200) not null,
+    n_content varchar(3000) not null,
+    n_date datetime );
+insert into itp_notice values("1","공지사항제목1","공지사항입니다",now());
+insert into itp_notice values("2","공지사항제목2","공지드립니다",now());
+
+Controller부분에 @RestController위에 @CrossOrigin("*")추가해주세요ㅎㅎ

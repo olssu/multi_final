@@ -93,8 +93,17 @@ if (!Groupdatas) return null;
       :
       <>
       <button className='groupDetailButton' value="목록으로" onClick={BackToGroupBoard} > 목록 </button>
-      <button className='groupDetailButton' value="신청" onClick={gotoapply} > 신청 </button>
+      
       </>
+     }
+     {
+        ((sessionStorage.getItem('m_name'))===null&&(localStorage.getItem('m_name'))=== null) ?
+        <>
+       </>
+       :
+       <>
+      <button className='groupDetailButton' value="신청" onClick={gotoapply} > 신청 </button>
+       </>
      }
         
       </div>

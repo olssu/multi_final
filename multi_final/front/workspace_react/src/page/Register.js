@@ -26,7 +26,7 @@ function Register() {
     
     const m_date= year + '-' + month  + '-' + day;
 
-
+    //닉네임 유효성검사
     const checkname=(e)=>{
         const nameRegex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9]{2,15}$/; 
 
@@ -38,6 +38,7 @@ function Register() {
         }else setIsName(true);
         
     }
+    //이메일 유효성검사
     const checkemail=(e)=>{
        // const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         const emailRegex=/^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
@@ -50,6 +51,7 @@ function Register() {
         }else setIsEmail(true);
         
     }
+    //비밀번호 유효성검사
     const checkPassword = (e) => {
         const pwdRegex=/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,16}$/
         //const pwdRegex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
